@@ -7,14 +7,17 @@ import {
   Link,
   HashRouter
 } from 'react-router-dom';
-import Nav from './nav'
-
+import Nav from './nav/nav'
+import Splash from './splash'
+import HomeContainer from './home/home_container'
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
   <div id="app">
+    <Nav/>
     <Switch>
-      <Route path='/' component={Nav}/>
+      <AuthRoute path='/' exact component={Splash}/>
+      <ProtectedRoute path='/h' component={HomeContainer}/>
     </Switch>
   </div>
     

@@ -1,0 +1,125 @@
+$blue: #003071;
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    -webkit-font-smoothing: antialiased;
+    
+}
+:focus {
+  outline: none;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+body{
+    background: #FFBE95;
+}
+
+.splash-nav{
+    display: flex;
+    width: 80vw;
+    color: $blue;
+    font-family: 'Fibon';
+    margin: 5vh auto;
+}
+
+#shroomy{
+    height: 50px;
+    width: 50px;
+    fill: white;
+}
+
+#logo{
+    font-size: 48px;
+}
+
+#splash-contents{
+    display: flex;
+    justify-content: space-around;
+}
+
+#splash-photo{
+    background: url('https://dazedprod.blob.core.windows.net/dazed-prod/1230/2/1232313.gif') no-repeat;
+    height: 60vh;
+    width: 50vw;
+    box-shadow: 12px 12px #FF9B5C;
+    background-size: cover;
+}
+
+
+#splash-form {
+    width: 30vw;
+    height: 60vh;
+    margin: auto;
+    border: 2px solid #003071;
+    box-shadow: 12px 12px #FF9B5C;
+}
+
+#form-title{
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 72px;
+    text-align: center;
+    color: $blue;
+}
+
+#session-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.session-header-sub{
+    display: flex;
+    font-family: 'Poppins';
+    font-weight: 400;
+    color: white;
+    justify-content: center;
+}
+
+.session-form-element{
+    margin: 5px 20px;
+    border: 2px solid $blue;
+    height: 30px;
+    font-family: 'Poppins';
+    font-weight: 400;
+}
+
+#session-form button{
+    color: white;
+    background: $blue;
+}
+
+#change-form{
+    color: $blue;
+}
+
+#change-form:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@font-face {
+    font-family: 'Fibon';
+    src: url('./Fibon_Sans_Regular.otf');
+    font-style: normal
+  }
+  
