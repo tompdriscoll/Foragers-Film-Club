@@ -1,4 +1,6 @@
 $blue: #003071;
+$orange1: #FFBE95;
+$orange2: #FF9B5C;
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -31,9 +33,11 @@ button:hover{
 }
 
 body{
-    background: #FFBE95;
+    background: $orange1;
     overflow-x: hidden;
 }
+
+// Nav
 
 .splash-nav{
     display: flex;
@@ -41,6 +45,11 @@ body{
     color: $blue;
     font-family: 'Fibon';
     margin: 5vh auto;
+    justify-content: space-between;
+}
+
+#nav-left{
+    display: flex;
 }
 
 #shroomy{
@@ -53,6 +62,15 @@ body{
     font-size: 48px;
 }
 
+
+#logout{
+    border: none;
+    background: none;
+    font-family: 'Poppins';
+    font-size: 18pt;
+}
+
+// Splash
 #splash-contents{
     display: flex;
     justify-content: space-around;
@@ -62,7 +80,7 @@ body{
     background: url('https://dazedprod.blob.core.windows.net/dazed-prod/1230/2/1232313.gif') no-repeat;
     height: 60vh;
     width: 50vw;
-    box-shadow: 12px 12px #FF9B5C;
+    box-shadow: 12px 12px $orange2;
     background-size: cover;
 }
 
@@ -72,7 +90,7 @@ body{
     height: 60vh;
     margin: auto;
     border: 2px solid $blue;
-    box-shadow: 12px 12px #FF9B5C;
+    box-shadow: 12px 12px $orange2;
 }
 
 #form-title{
@@ -118,14 +136,10 @@ body{
     cursor: pointer;
 }
 
-@font-face {
-    font-family: 'Fibon';
-    src: url('./Fibon_Sans_Regular.otf');
-    font-style: normal
-  }
-  
 
 
+
+// Welcome Page
 
 #welcome{
     text-align: center;
@@ -171,3 +185,12 @@ body{
     height: 80%;
     object-fit: contain;
 }
+
+//Fonts
+
+@font-face {
+    font-family: 'Fibon';
+    src: url('./Fibon_Sans_Regular.otf');
+    font-style: normal
+  }
+  

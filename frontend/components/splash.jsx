@@ -12,7 +12,7 @@ class Splash extends React.Component {
     }
 
     changeForm() {
-        let newForm = this.state.form === "Sign in" ? 'Sign up' : 'Sign in'
+        let newForm = this.state.form === "Sign in" ? 'Sign Up' : 'Sign in'
         this.setState({form: newForm})
       }
 
@@ -20,8 +20,8 @@ class Splash extends React.Component {
 
     render() {
         
-        let form = (this.state.form === 'Sign up' ?  <SignUpForm/> : <LogInForm/>)
-        let formChangeButton = (this.state.form === 'Sign up' ?  ' sign into your account' : 'create an account')
+        let form = (this.state.form === 'Sign Up' ?  <SignUpForm/> : <LogInForm/>)
+        let formChangeButton = (this.state.form === 'Sign Up' ?  ' sign into your account' : ' create an account')
         return (
             <div id='splash'>
                 <div id='splash-contents'>
@@ -32,7 +32,7 @@ class Splash extends React.Component {
                         <header>
                             <h2 id='form-title'>{this.state.form}</h2>
                             <div className='session-header-sub'>
-                            or <p id='change-form' onClick={this.changeForm}> {formChangeButton}</p>
+                            or&nbsp;<p id='change-form' onClick={this.changeForm}> {formChangeButton}</p>
                             </div>
                         </header>
                         {form}
