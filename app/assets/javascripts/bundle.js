@@ -209,6 +209,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -242,17 +244,71 @@ var Home = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Home);
 
     _this = _super.call(this, props);
-    _this.state = {};
+    _this.state = {
+      error: null,
+      isLoaded: false,
+      movie: [],
+      searchValue: ''
+    };
+    _this.searchMovies = _this.searchMovies.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Home, [{
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (event) {
+        _this2.setState(_defineProperty({}, field, event.target.value));
+      };
+    }
+  }, {
+    key: "searchMovies",
+    value: function searchMovies(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      var searchTile = this.state.searchValue.split(' ').join('%20');
+      fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?page=1&r=json&s=" + searchTile, {
+        "method": "GET",
+        "headers": {
+          "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
+          "x-rapidapi-key": "c590d7f8a0msh94e62ba0bda616bp1d9deejsn3a9e6e843909"
+        }
+      }).then(function (res) {
+        return res.json();
+      }).then(function (result) {
+        _this3.setState({
+          isLoaded: true,
+          movie: result.Search[0]
+        });
+      }, function (error) {
+        _this3.setState({
+          isLoaded: true,
+          error: error
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      debugger;
+      var _this4 = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-home"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.currentUser.first_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Lets Forage!"));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Welcome ", this.props.currentUser.first_name, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Lets Forage!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: function onSubmit(e) {
+          return _this4.searchMovies(e);
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "test",
+        value: this.state.searchValue,
+        placeholder: "Search Movies",
+        onChange: this.update('searchValue')
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.state.movie.Poster
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.state.movie.Title));
     }
   }]);
 
@@ -736,7 +792,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var form = this.state.form === 'Sign up' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signup_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_login_from_container__WEBPACK_IMPORTED_MODULE_2__["default"], null);
-      var formChangeButton = this.state.form === ' Sign up' ? ' sign into your account' : 'create an account';
+      var formChangeButton = this.state.form === 'Sign up' ? ' sign into your account' : 'create an account';
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "splash"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

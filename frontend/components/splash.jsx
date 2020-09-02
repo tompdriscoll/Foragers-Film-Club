@@ -21,7 +21,7 @@ class Splash extends React.Component {
     render() {
         
         let form = (this.state.form === 'Sign up' ?  <SignUpForm/> : <LogInForm/>)
-        let formChangeButton = (this.state.form === ' Sign up' ?  ' sign into your account' : 'create an account')
+        let formChangeButton = (this.state.form === 'Sign up' ?  ' sign into your account' : 'create an account')
         return (
             <div id='splash'>
                 <div id='splash-contents'>
