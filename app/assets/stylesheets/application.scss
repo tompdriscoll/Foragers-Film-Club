@@ -32,6 +32,7 @@ button:hover{
 
 body{
     background: #FFBE95;
+    overflow-x: hidden;
 }
 
 .splash-nav{
@@ -123,3 +124,50 @@ body{
     font-style: normal
   }
   
+
+
+
+#welcome{
+    text-align: center;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 42pt;
+}
+
+#search-form{
+    text-align: center;
+}
+
+#movie-search{
+    padding: 5px;
+    font-family: 'Poppins';
+    font-size: 24pt;
+    margin: 30px;
+    border: 2px solid $blue;
+    width: 40vw;
+}
+
+#search-results{
+    display: flex;
+    margin: auto;
+    justify-content: space-evenly;
+    width: 100vw;
+    flex-wrap: wrap;
+}
+
+.search-result{
+    width: 200px;
+    margin: 23px;
+
+}
+
+.search-result-title{
+    font-family: 'Poppins';
+    text-align: center;
+}
+
+.search-result-image{
+    width: inherit;
+    height: 80%;
+    object-fit: contain;
+}

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import SearchResult from './search_result'
+
 class Home extends React.Component {
 
     constructor(props){
@@ -7,8 +9,8 @@ class Home extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            movie: [],
-            searchValue: ''
+            searchValue: '',
+            searchResult: [],
         }
         this.searchMovies = this.searchMovies.bind(this)
     }
@@ -22,7 +24,9 @@ class Home extends React.Component {
 
      searchMovies(e){
         e.preventDefault()
+        
         let searchTile = this.state.searchValue.split(' ').join('%20')
+
         fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?page=1&r=json&s=" + searchTile, {
             "method": "GET",
             "headers": {
@@ -35,7 +39,7 @@ class Home extends React.Component {
           (result) => {
             this.setState({
               isLoaded: true,
-              movie: result.Search[0]
+              searchResult: result.Search
             });
           },
 
@@ -50,16 +54,27 @@ class Home extends React.Component {
      }
 
     render(){
+        let name = this.props.currentUser.first_name
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+        
+        let results = []
+
+        if (this.state.searchResult.length > 0){
+            this.state.searchResult.forEach(movie => {
+                results.push( <SearchResult movie={movie}/>)
+            })
+        }
     
     return (  
     <div className="user-home">
-        <h2>Welcome {this.props.currentUser.first_name}!</h2>
-        <h2>Lets Forage!</h2>
-        <form onSubmit={(e) => this.searchMovies(e)}>
-            <input type='test' value={this.state.searchValue} placeholder='Search Movies' onChange={this.update('searchValue')}></input>
+        <h2 id='welcome'>Welcome {name}, Lets Forage!</h2>
+        
+        <form id='search-form' onSubmit={(e) => this.searchMovies(e)}>
+            <input id='movie-search' type='test' value={this.state.searchValue} placeholder='Search Movies' onChange={this.update('searchValue')}></input>
         </form>
-        <img src={this.state.movie.Poster}></img>
-        <h2 >{this.state.movie.Title}</h2>
+        <div id="search-results">
+            {results}
+        </div>
     </div>)
 
     }
