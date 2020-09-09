@@ -250,25 +250,52 @@ var Home = /*#__PURE__*/function (_React$Component) {
       error: null,
       isLoaded: false,
       searchValue: '',
-      searchResult: []
+      searchResult: [],
+      details: null
     };
     _this.searchMovies = _this.searchMovies.bind(_assertThisInitialized(_this));
+    _this.details = _this.details.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Home, [{
-    key: "update",
-    value: function update(field) {
+    key: "details",
+    value: function details(id) {
       var _this2 = this;
 
+      fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?i=$" + {
+        id: id
+      } + "&r=json", {
+        "method": "GET",
+        "headers": {
+          "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
+          "x-rapidapi-key": "c590d7f8a0msh94e62ba0bda616bp1d9deejsn3a9e6e843909"
+        }
+      }).then(function (res) {
+        return res.json();
+      }).then(function (result) {
+        _this2.setState({
+          searchResult: result.Search
+        });
+      }, function (error) {
+        _this2.setState({
+          error: error
+        });
+      });
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this3 = this;
+
       return function (event) {
-        _this2.setState(_defineProperty({}, field, event.target.value));
+        _this3.setState(_defineProperty({}, field, event.target.value));
       };
     }
   }, {
     key: "searchMovies",
     value: function searchMovies(e) {
-      var _this3 = this;
+      var _this4 = this;
 
       e.preventDefault();
       var searchTile = this.state.searchValue.split(' ').join('%20');
@@ -281,12 +308,12 @@ var Home = /*#__PURE__*/function (_React$Component) {
       }).then(function (res) {
         return res.json();
       }).then(function (result) {
-        _this3.setState({
+        _this4.setState({
           isLoaded: true,
           searchResult: result.Search
         });
       }, function (error) {
-        _this3.setState({
+        _this4.setState({
           isLoaded: true,
           error: error
         });
@@ -295,7 +322,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       var name = this.props.currentUser.first_name;
       name = name.charAt(0).toUpperCase() + name.slice(1);
@@ -304,7 +331,8 @@ var Home = /*#__PURE__*/function (_React$Component) {
       if (this.state.searchResult.length > 0) {
         this.state.searchResult.forEach(function (movie) {
           results.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_result__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            movie: movie
+            movie: movie,
+            details: _this5.details
           }));
         });
       }
@@ -316,7 +344,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
       }, "Welcome ", name, ", Lets Forage!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         id: "search-form",
         onSubmit: function onSubmit(e) {
-          return _this4.searchMovies(e);
+          return _this5.searchMovies(e);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "movie-search",
@@ -389,18 +417,99 @@ var mdp = function mdp(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var SearchResult = function SearchResult(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "search-result"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    className: "search-result-image",
-    src: props.movie.Poster
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-    className: "search-result-title"
-  }, props.movie.Title, " ( ", props.movie.Year, " )"));
-};
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+ // const SearchResult = props => {
+
+var SearchResult = /*#__PURE__*/function (_React$Component) {
+  _inherits(SearchResult, _React$Component);
+
+  var _super = _createSuper(SearchResult);
+
+  function SearchResult(props) {
+    var _this;
+
+    _classCallCheck(this, SearchResult);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      details: {}
+    };
+    _this.details = _this.details.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(SearchResult, [{
+    key: "details",
+    value: function details() {
+      var _this2 = this;
+
+      console.log(this.props.movie.imdbID);
+      fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?i=tt0046445&r=json", {
+        "method": "GET",
+        "headers": {
+          "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
+          "x-rapidapi-key": "c590d7f8a0msh94e62ba0bda616bp1d9deejsn3a9e6e843909"
+        }
+      }).then(function (res) {
+        return res.json();
+      }).then(function (result) {
+        _this2.setState({
+          details: result
+        });
+      }, function (error) {
+        _this2.setState({
+          error: error
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var plot = ''; // debugger
+
+      if (this.state.details.Plot) {
+        plot = this.state.details.Plot;
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-result",
+        onClick: function onClick() {
+          return _this3.details();
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "search-result-image",
+        src: this.props.movie.Poster
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "search-result-title"
+      }, this.props.movie.Title, " (", this.props.movie.Year, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, plot));
+    }
+  }]);
+
+  return SearchResult;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (SearchResult);
 
@@ -439,7 +548,7 @@ var Nav = function Nav(props) {
     x: "0px",
     y: "0px",
     viewBox: "0 0 1000 1000",
-    "enable-background": "new 0 0 1000 1000",
+    enableBackground: "new 0 0 1000 1000",
     space: "preserve"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("metadata", null, " Svg Vector Icons : http://www.onlinewebfonts.com/icon "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
     transform: "translate(0.000000,511.000000) scale(0.100000,-0.100000)"
@@ -448,7 +557,7 @@ var Nav = function Nav(props) {
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
     id: "logo"
   }, "Foragers Film Club")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "nav-left"
+    id: "nav-right"
   }, logoutButton));
 };
 

@@ -91,7 +91,6 @@ class SessionForm extends React.Component {
           <input className='session-form-element' type="text" id="email" value={this.state.email} placeholder="Email" onChange={this.update('email')} />
           <input className='session-form-element' type="password" id="password" value={this.state.password} placeholder="Password" onChange={this.update('password')} />
 
-
           <div className='error-box'>
             <ul className='error-ul'>
               {errorsLi}

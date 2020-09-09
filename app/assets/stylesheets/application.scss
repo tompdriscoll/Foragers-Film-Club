@@ -60,6 +60,9 @@ body{
 
 #logo{
     font-size: 48px;
+    color: white;
+    line-height: 1.25;
+    margin-left: 10px;
 }
 
 
@@ -136,6 +139,24 @@ body{
     cursor: pointer;
 }
 
+.error-box{
+    margin: auto;
+    width: 80%;
+}
+
+.error-ul{
+    list-style: none;
+    margin: 0 8px;
+}
+
+.error-li{
+    font-size: 12px;
+    font-family: 'Poppins';
+    font-weight: 400;
+    color: $blue;
+}
+
+
 
 
 
@@ -146,6 +167,7 @@ body{
     font-family: 'Poppins';
     font-weight: 600;
     font-size: 42pt;
+    color: $blue;
 }
 
 #search-form{
@@ -184,6 +206,7 @@ body{
     width: inherit;
     height: 80%;
     object-fit: contain;
+ 
 }
 
 //Fonts
