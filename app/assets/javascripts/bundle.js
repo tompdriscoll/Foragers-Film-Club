@@ -442,7 +442,18 @@ var MovieDetails = function MovieDetails(props) {
       Genre = _props$movie.Genre;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "movie-detail-div"
-  }, Title, Year, Director, Poster);
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "detail-poster",
+    src: Poster
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "detail-text"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "detail-title"
+  }, Title, "\xA0(", Year, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "detail-director"
+  }, Director), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "detail-descrip"
+  }, Plot)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (MovieDetails);

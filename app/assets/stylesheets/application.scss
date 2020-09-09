@@ -209,6 +209,33 @@ body{
  
 }
 
+//Details
+
+
+.movie-detail-div{
+    position: absolute;
+    height: 50vh;
+    width: 100vw;
+    background: $orange2;
+    display: flex;
+}
+
+.detail-poster{
+    margin-left: 5%;
+}
+
+.detail-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-title{
+    font-family: 'Poppins';
+    font-size: 40pt;
+
+
+}
+
 //Fonts
 
 @font-face {
