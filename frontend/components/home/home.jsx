@@ -1,6 +1,7 @@
 import React from 'react';
 
 import SearchResult from './search_result'
+import MovieDetails from './movie_details'
 
 class Home extends React.Component {
 
@@ -11,7 +12,7 @@ class Home extends React.Component {
             isLoaded: false,
             searchValue: '',
             searchResult: [],
-            details: null
+            details: {}
         }
         this.searchMovies = this.searchMovies.bind(this)
         this.details = this.details.bind(this)
@@ -19,8 +20,7 @@ class Home extends React.Component {
 
     details(id){
         
-        
-        fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?i=$" + {id} + "&r=json", {
+        fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?i=" + id + "&r=json", {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
@@ -31,7 +31,7 @@ class Home extends React.Component {
         .then(
           (result) => {
             this.setState({
-              searchResult: result.Search
+              details: result
             });
           },
 
@@ -68,7 +68,8 @@ class Home extends React.Component {
           (result) => {
             this.setState({
               isLoaded: true,
-              searchResult: result.Search
+              searchResult: result.Search,
+              details: {}
             });
           },
 
@@ -93,18 +94,24 @@ class Home extends React.Component {
                 results.push( <SearchResult movie={movie} details={this.details}/>)
             })
         }
+        let details;
+        if (this.state.details.Plot) {
+            details = <MovieDetails movie={this.state.details}/>
+            
+        }
     
-    return (  
-    <div className="user-home">
-        <h2 id='welcome'>Welcome {name}, Lets Forage!</h2>
-        
-        <form id='search-form' onSubmit={(e) => this.searchMovies(e)}>
-            <input id='movie-search' type='test' value={this.state.searchValue} placeholder='Search Movies' onChange={this.update('searchValue')}></input>
-        </form>
-        <div id="search-results">
-            {results}
-        </div>
-    </div>)
+        return (  
+        <div className="user-home">
+            <h2 id='welcome'>Welcome {name}, Lets Forage!</h2>
+            
+            <form id='search-form' onSubmit={(e) => this.searchMovies(e)}>
+                <input id='movie-search' type='test' value={this.state.searchValue} placeholder='Search Movies' onChange={this.update('searchValue')}></input>
+            </form>
+            <div id="search-results">
+                {results}
+                {details}
+            </div>
+        </div>)
 
     }
 }

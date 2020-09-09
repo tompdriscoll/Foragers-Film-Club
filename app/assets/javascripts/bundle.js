@@ -208,6 +208,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _search_result__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search_result */ "./frontend/components/home/search_result.jsx");
+/* harmony import */ var _movie_details__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./movie_details */ "./frontend/components/home/movie_details.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -235,6 +236,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Home = /*#__PURE__*/function (_React$Component) {
   _inherits(Home, _React$Component);
 
@@ -251,7 +253,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
       isLoaded: false,
       searchValue: '',
       searchResult: [],
-      details: null
+      details: {}
     };
     _this.searchMovies = _this.searchMovies.bind(_assertThisInitialized(_this));
     _this.details = _this.details.bind(_assertThisInitialized(_this));
@@ -263,9 +265,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
     value: function details(id) {
       var _this2 = this;
 
-      fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?i=$" + {
-        id: id
-      } + "&r=json", {
+      fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?i=" + id + "&r=json", {
         "method": "GET",
         "headers": {
           "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
@@ -275,7 +275,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
         return res.json();
       }).then(function (result) {
         _this2.setState({
-          searchResult: result.Search
+          details: result
         });
       }, function (error) {
         _this2.setState({
@@ -310,7 +310,8 @@ var Home = /*#__PURE__*/function (_React$Component) {
       }).then(function (result) {
         _this4.setState({
           isLoaded: true,
-          searchResult: result.Search
+          searchResult: result.Search,
+          details: {}
         });
       }, function (error) {
         _this4.setState({
@@ -337,6 +338,14 @@ var Home = /*#__PURE__*/function (_React$Component) {
         });
       }
 
+      var details;
+
+      if (this.state.details.Plot) {
+        details = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_movie_details__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          movie: this.state.details
+        });
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-home"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
@@ -354,7 +363,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('searchValue')
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "search-results"
-      }, results));
+      }, results, details));
     }
   }]);
 
@@ -406,6 +415,40 @@ var mdp = function mdp(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/home/movie_details.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/home/movie_details.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var MovieDetails = function MovieDetails(props) {
+  // debugger
+  var _props$movie = props.movie,
+      Title = _props$movie.Title,
+      Year = _props$movie.Year,
+      Director = _props$movie.Director,
+      Actors = _props$movie.Actors,
+      Rated = _props$movie.Rated,
+      Runtime = _props$movie.Runtime,
+      Plot = _props$movie.Plot,
+      Poster = _props$movie.Poster,
+      Genre = _props$movie.Genre;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "movie-detail-div"
+  }, Title, Year, Director, Poster);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (MovieDetails);
+
+/***/ }),
+
 /***/ "./frontend/components/home/search_result.jsx":
 /*!****************************************************!*\
   !*** ./frontend/components/home/search_result.jsx ***!
@@ -417,6 +460,7 @@ var mdp = function mdp(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _movie_details__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./movie_details */ "./frontend/components/home/movie_details.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -439,7 +483,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
- // const SearchResult = props => {
+
+
 
 var SearchResult = /*#__PURE__*/function (_React$Component) {
   _inherits(SearchResult, _React$Component);
@@ -452,59 +497,28 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, SearchResult);
 
     _this = _super.call(this, props);
-    _this.state = {
-      details: {}
-    };
-    _this.details = _this.details.bind(_assertThisInitialized(_this));
+    _this.state = {};
     return _this;
   }
 
   _createClass(SearchResult, [{
-    key: "details",
-    value: function details() {
-      var _this2 = this;
-
-      console.log(this.props.movie.imdbID);
-      fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?i=tt0046445&r=json", {
-        "method": "GET",
-        "headers": {
-          "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
-          "x-rapidapi-key": "c590d7f8a0msh94e62ba0bda616bp1d9deejsn3a9e6e843909"
-        }
-      }).then(function (res) {
-        return res.json();
-      }).then(function (result) {
-        _this2.setState({
-          details: result
-        });
-      }, function (error) {
-        _this2.setState({
-          error: error
-        });
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
-      var plot = ''; // debugger
-
-      if (this.state.details.Plot) {
-        plot = this.state.details.Plot;
-      }
-
+      var poster;
+      this.props.movie.Poster !== 'N/A' ? poster = this.props.movie.Poster : poster = window.movieIcon;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-result",
         onClick: function onClick() {
-          return _this3.details();
+          return _this2.props.details(_this2.props.movie.imdbID);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "search-result-image",
-        src: this.props.movie.Poster
+        src: poster
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "search-result-title"
-      }, this.props.movie.Title, " (", this.props.movie.Year, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, plot));
+      }, this.props.movie.Title, " (", this.props.movie.Year, ")"));
     }
   }]);
 
