@@ -16,6 +16,7 @@ class Home extends React.Component {
         }
         this.searchMovies = this.searchMovies.bind(this)
         this.details = this.details.bind(this)
+        this.closeDetails = this.closeDetails.bind(this)
     }
 
     details(id){
@@ -43,6 +44,12 @@ class Home extends React.Component {
         )
  
     }  
+
+    closeDetails(){
+      this.setState({
+        details: {}
+      });
+    }
 
 
     update(field) {
@@ -96,7 +103,7 @@ class Home extends React.Component {
         }
         let details;
         if (this.state.details.Plot) {
-            details = <MovieDetails movie={this.state.details}/>
+            details = <MovieDetails movie={this.state.details} close={this.closeDetails}/>
             
         }
     

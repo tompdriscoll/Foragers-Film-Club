@@ -25,9 +25,8 @@ class Splash extends React.Component {
         return (
             <div id='splash'>
                 <div id='splash-contents'>
-                    {/* <div id='splash-photo'>
-                       
-                    </div> */}
+                    <p id='splash-quote'>Everything I learned, I learned from the movies."
+                    - Audrey Hepburn </p>
                     <div id='splash-form'>
                         <header>
                             <h2 id='form-title'>{this.state.form}</h2>

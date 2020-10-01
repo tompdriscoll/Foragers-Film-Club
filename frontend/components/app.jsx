@@ -11,6 +11,7 @@ import NavContainer from './nav/nav_container'
 import Splash from './splash'
 import HomeContainer from './home/home_container'
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import MyCalendar from './calendar/calendar';
 
 const App = () => (
   <div id="app">
@@ -18,6 +19,7 @@ const App = () => (
     <Switch>
       <AuthRoute path='/' exact component={Splash}/>
       <ProtectedRoute path='/h' component={HomeContainer}/>
+      <ProtectedRoute path='/calendar' component={MyCalendar}/>
     </Switch>
   </div>
     
