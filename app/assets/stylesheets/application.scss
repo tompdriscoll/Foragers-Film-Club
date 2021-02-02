@@ -1,3 +1,4 @@
+
 $blue: #003071;
 $orange1: #FFBE95;
 $orange2: #FF9B5C;
@@ -82,6 +83,10 @@ body{
 }
 
 // Splash
+
+#splash{
+
+}
 #splash-contents{
     display: flex;
     justify-content: space-evenly;
@@ -240,7 +245,9 @@ body{
     background: $orange2;
     display: flex;
 }
-
+#poster-container{
+  
+}
 .detail-poster{
     margin-left: 5%;
     width: 15%;
@@ -272,6 +279,15 @@ body{
     position: relative;
     left: 8%;
     top: 30%;
+}
+
+.detail-buttons button{
+  background: #003071;
+  color: white;
+  padding: 14px;
+  margin: 20px;
+  border: none;
+  font-family: 'Beugrat';
 }
 
 //Fonts

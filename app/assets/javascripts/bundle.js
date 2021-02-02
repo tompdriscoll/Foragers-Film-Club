@@ -171,7 +171,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _splash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./splash */ "./frontend/components/splash.jsx");
 /* harmony import */ var _home_home_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./home/home_container */ "./frontend/components/home/home_container.jsx");
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
-/* harmony import */ var _calendar_calendar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./calendar/calendar */ "./frontend/components/calendar/calendar.jsx");
+/* harmony import */ var _calendar_calendar_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./calendar/calendar_container */ "./frontend/components/calendar/calendar_container.jsx");
 
 
 
@@ -193,7 +193,7 @@ var App = function App() {
     component: _home_home_container__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_6__["ProtectedRoute"], {
     path: "/calendar",
-    component: _calendar_calendar__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _calendar_calendar_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   })));
 };
 
@@ -265,6 +265,7 @@ var MyCalendar = /*#__PURE__*/function (_React$Component) {
   _createClass(MyCalendar, [{
     key: "render",
     value: function render() {
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "calendar-top"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_big_calendar__WEBPACK_IMPORTED_MODULE_0__["Calendar"], {
@@ -283,6 +284,43 @@ var MyCalendar = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (MyCalendar);
+
+/***/ }),
+
+/***/ "./frontend/components/calendar/calendar_container.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/calendar/calendar_container.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _calendar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./calendar */ "./frontend/components/calendar/calendar.jsx");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+
+
+
+
+
+var msp = function msp(_ref) {
+  var session = _ref.session,
+      _ref$entities = _ref.entities,
+      users = _ref$entities.users,
+      uploads = _ref$entities.uploads;
+  return {
+    currentUser: users[session.id]
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(_calendar__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -449,7 +487,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
         className: "user-home"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         id: "welcome"
-      }, "Welcome ", name, ", Lets Forage!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, "Welcome ", name, ", Lets Forage!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " Find friends, search movies, and set a date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         id: "search-form",
         onSubmit: function onSubmit(e) {
           return _this5.searchMovies(e);
@@ -462,7 +500,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('searchValue')
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "search-results"
-      }, results, details));
+      }, results, details), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "New Event"));
     }
   }]);
 
@@ -539,19 +577,26 @@ var MovieDetails = function MovieDetails(props) {
       Plot = _props$movie.Plot,
       Poster = _props$movie.Poster,
       Genre = _props$movie.Genre;
+  debugger;
   var poster;
   Poster !== 'N/A' ? poster = Poster : poster = window.movieIcon;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "movie-detail-div"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "x-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "detail-x",
     onClick: function onClick() {
       return props.close();
     }
-  }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+  }, "X")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "poster-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "detail-poster",
     src: poster
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "detail-text-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "detail-text"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "detail-title"
@@ -561,7 +606,7 @@ var MovieDetails = function MovieDetails(props) {
     className: "detail-descrip"
   }, Plot), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "detail-buttons"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Add To My List"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Add To Calendar"))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Add To My List"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Add To Calendar")))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (MovieDetails);

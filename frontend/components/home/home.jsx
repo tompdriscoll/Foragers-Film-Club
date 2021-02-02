@@ -110,7 +110,7 @@ class Home extends React.Component {
         return (  
         <div className="user-home">
             <h2 id='welcome'>Welcome {name}, Lets Forage!</h2>
-            
+            <h3> Find friends, search movies, and set a date</h3>
             <form id='search-form' onSubmit={(e) => this.searchMovies(e)}>
                 <input id='movie-search' type='test' value={this.state.searchValue} placeholder='Search Movies' onChange={this.update('searchValue')}></input>
             </form>
@@ -118,6 +118,7 @@ class Home extends React.Component {
                 {results}
                 {details}
             </div>
+            <button>New Event</button> 
         </div>)
 
     }

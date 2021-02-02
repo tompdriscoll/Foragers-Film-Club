@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :events
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  
   namespace :api, defaults: {format: :json} do
+    resources :event
     resource :user, only: [:create, :destroy, :show, :update, :edit]
     resource :session, only: [:create, :destroy, :show]
   end

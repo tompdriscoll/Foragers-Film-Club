@@ -16,7 +16,7 @@ class MyCalendar extends React.Component {
     }
   }
 
-  render(){
+  render(){debugger
     return(
       <div className="calendar-top">
         <Calendar

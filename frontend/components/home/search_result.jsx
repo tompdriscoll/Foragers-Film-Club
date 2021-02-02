@@ -12,7 +12,6 @@ class SearchResult extends React.Component {
    
     }
     
-    
     render(){
         let poster;
         this.props.movie.Poster !== 'N/A' ? poster = this.props.movie.Poster : poster = window.movieIcon
