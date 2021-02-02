@@ -106,7 +106,7 @@ class Home extends React.Component {
             details = <MovieDetails movie={this.state.details} close={this.closeDetails}/>
             
         }
-    
+        
         return (  
         <div className="user-home">
             <h2 id='welcome'>Welcome {name}, Lets Forage!</h2>
@@ -119,7 +119,7 @@ class Home extends React.Component {
                 {details}
             </div>
             <button>New Event</button> 
-            {EventForm}
+            <EventForm user={this.props.currentUser}/>
         </div>)
 
     }

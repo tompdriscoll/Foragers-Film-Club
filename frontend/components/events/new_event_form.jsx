@@ -7,7 +7,7 @@ class EventForm extends React.Component {
     this.state = {
       name: '',
       type: '',
-      hostId: '',
+      hostId: props.user.id,
       time: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,6 +17,17 @@ class EventForm extends React.Component {
     return (event) => {
       this.setState({ [field]: event.target.value });
     }
+  }
+
+
+  handleSubmit(event) { 
+    event.preventDefault();
+    let form = this
+    const user = Object.assign({}, this.state);  
+    this.props.processForm(this.state)  
+    .then(response => {  
+      form.props.history.push('/h')    
+    });
   }
 
   render() {

@@ -407,28 +407,28 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var EvForm = /*#__PURE__*/function (_React$Component) {
-  _inherits(EvForm, _React$Component);
+var EventForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(EventForm, _React$Component);
 
-  var _super = _createSuper(EvForm);
+  var _super = _createSuper(EventForm);
 
-  function EvForm(props) {
+  function EventForm(props) {
     var _this;
 
-    _classCallCheck(this, EvForm);
+    _classCallCheck(this, EventForm);
 
     _this = _super.call(this, props);
     _this.state = {
       name: '',
       type: '',
-      hostId: '',
+      hostId: props.user.id,
       time: ''
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  _createClass(EvForm, [{
+  _createClass(EventForm, [{
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -436,6 +436,16 @@ var EvForm = /*#__PURE__*/function (_React$Component) {
       return function (event) {
         _this2.setState(_defineProperty({}, field, event.target.value));
       };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      event.preventDefault();
+      var form = this;
+      var user = Object.assign({}, this.state);
+      this.props.processForm(this.state).then(function (response) {
+        form.props.history.push('/h');
+      });
     }
   }, {
     key: "render",
@@ -455,7 +465,7 @@ var EvForm = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 
-  return EvForm;
+  return EventForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(EventForm));
@@ -640,7 +650,9 @@ var Home = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('searchValue')
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "search-results"
-      }, results, details), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "New Event"), _events_new_event_form__WEBPACK_IMPORTED_MODULE_3__["default"]);
+      }, results, details), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "New Event"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_events_new_event_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        user: this.props.currentUser
+      }));
     }
   }]);
 
