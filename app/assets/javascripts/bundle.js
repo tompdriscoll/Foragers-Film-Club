@@ -407,15 +407,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var SessionForm = /*#__PURE__*/function (_React$Component) {
-  _inherits(SessionForm, _React$Component);
+var EvForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(EvForm, _React$Component);
 
-  var _super = _createSuper(SessionForm);
+  var _super = _createSuper(EvForm);
 
-  function SessionForm(props) {
+  function EvForm(props) {
     var _this;
 
-    _classCallCheck(this, SessionForm);
+    _classCallCheck(this, EvForm);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -428,7 +428,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  _createClass(SessionForm, [{
+  _createClass(EvForm, [{
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -455,7 +455,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 
-  return SessionForm;
+  return EvForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(EventForm));
