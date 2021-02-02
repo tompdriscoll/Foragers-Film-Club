@@ -2,7 +2,7 @@ import React from 'react';
 
 import SearchResult from './search_result'
 import MovieDetails from './movie_details'
-import 
+import EventForm from '../events/new_event_form'
 class Home extends React.Component {
 
     constructor(props){
@@ -119,6 +119,7 @@ class Home extends React.Component {
                 {details}
             </div>
             <button>New Event</button> 
+            {EventForm}
         </div>)
 
     }
