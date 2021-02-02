@@ -439,10 +439,10 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit(event) {
-      event.preventDefault();
+    value: function handleSubmit(e) {
+      e.preventDefault();
       var form = this;
-      var user = Object.assign({}, this.state);
+      var event = Object.assign({}, this.state);
       this.props.processForm(this.state).then(function (response) {
         form.props.history.push('/h');
       });
@@ -450,9 +450,14 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         action: "",
-        id: "event-form"
+        id: "event-form",
+        onSubmit: function onSubmit() {
+          return _this3.handleSubmit(e);
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         id: "event-name-field",
@@ -461,7 +466,13 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
         type: "text",
         id: "event-type-field",
         className: "event-form-element"
-      }));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "date",
+        id: "event-time-field",
+        className: "event-form-element"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit"
+      }, "Submit"));
     }
   }]);
 
@@ -699,7 +710,7 @@ var mdp = function mdp(dispatch) {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"])());
     },
-    newEvent: function newEvent() {
+    processForm: function processForm() {
       return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_4__["newEvent"])());
     }
   };

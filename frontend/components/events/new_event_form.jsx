@@ -20,10 +20,10 @@ class EventForm extends React.Component {
   }
 
 
-  handleSubmit(event) { 
-    event.preventDefault();
+  handleSubmit(e) { 
+    e.preventDefault();
     let form = this
-    const user = Object.assign({}, this.state);  
+    const event = Object.assign({}, this.state);  
     this.props.processForm(this.state)  
     .then(response => {  
       form.props.history.push('/h')    
@@ -33,11 +33,11 @@ class EventForm extends React.Component {
   render() {
 
     return (
-        <form action="" id="event-form">
+        <form action="" id="event-form" onSubmit={() => this.handleSubmit(e)}>
             <input type="text" id='event-name-field' className="event-form-element"/>
             <input type="text" id='event-type-field' className="event-form-element"/>
-            {/* <input type="text" id='event-time-field' className="event-form-element"/> */}
-
+            <input type="date" id='event-time-field' className="event-form-element"/>
+            <button type='submit'>Submit</button>
         </form>
     )
   }
