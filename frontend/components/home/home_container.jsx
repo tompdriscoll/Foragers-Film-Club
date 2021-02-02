@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 
 import Home from './home'
 import {logout} from '../../actions/session_actions'
-
-const msp = ({ session, entities: { users, uploads } }) => {
+import {newEvent} from '../../actions/event_actions'
+const msp = ({ session, entities: { users, events } }) => {
   
     return {
       currentUser: users[session.id]
@@ -13,7 +13,8 @@ const msp = ({ session, entities: { users, uploads } }) => {
   };
 
 const mdp = dispatch => ({
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    newEvent: () => dispatch(newEvent())
 })
 
 export default connect(msp,mdp)(Home)

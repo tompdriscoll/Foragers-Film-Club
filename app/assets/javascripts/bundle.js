@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/event_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/event_actions.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/tomdriscoll/Desktop/Foragers Film Club/frontend/actions/event_actions.js: Unexpected token (6:0)\n\n\u001b[0m \u001b[90m 4 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m \u001b[33mRECEIVE_ALL_EVENTS\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 6 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m receiveEvent \u001b[33m=\u001b[39m event \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 7 | \u001b[39m  \u001b[36mreturn\u001b[39m ({\u001b[0m\n\u001b[0m \u001b[90m 8 | \u001b[39m  type\u001b[33m:\u001b[39m \u001b[33mRECEIVE_EVENT\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 9 | \u001b[39m  event})\u001b[0m\n    at Object._raise (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:764:17)\n    at Object.raiseWithData (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:757:17)\n    at Object.raise (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:751:17)\n    at Object.unexpected (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:8927:16)\n    at Object.parseVar (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:12001:18)\n    at Object.parseVarStatement (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:11806:10)\n    at Object.parseStatementContent (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:11398:21)\n    at Object.parseStatement (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:11331:17)\n    at Object.parseExportDeclaration (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:12543:17)\n    at Object.maybeParseExportDeclaration (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:12499:31)\n    at Object.parseExport (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:12429:29)\n    at Object.parseStatementContent (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:11437:27)\n    at Object.parseStatement (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:11331:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:11913:25)\n    at Object.parseBlockBody (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:11899:10)\n    at Object.parseTopLevel (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:11262:10)\n    at Object.parse (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:12967:10)\n    at parse (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/parser/lib/index.js:13020:38)\n    at parser (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/core/lib/parser/index.js:54:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/core/lib/transformation/normalize-file.js:99:38)\n    at normalizeFile.next (<anonymous>)\n    at run (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/core/lib/transformation/index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/@babel/core/lib/transform.js:27:41)\n    at transform.next (<anonymous>)\n    at step (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/gensync/index.js:254:32)\n    at /Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/gensync/index.js:266:13\n    at async.call.result.err.err (/Users/tomdriscoll/Desktop/Foragers Film Club/node_modules/gensync/index.js:216:11)\n    at runMicrotasks (<anonymous>)");
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -525,6 +536,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home */ "./frontend/components/home/home.jsx");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_event_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/event_actions */ "./frontend/actions/event_actions.js");
+/* harmony import */ var _actions_event_actions__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_actions_event_actions__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -534,7 +548,7 @@ var msp = function msp(_ref) {
   var session = _ref.session,
       _ref$entities = _ref.entities,
       users = _ref$entities.users,
-      uploads = _ref$entities.uploads;
+      events = _ref$entities.events;
   return {
     currentUser: users[session.id]
   };
@@ -544,6 +558,9 @@ var mdp = function mdp(dispatch) {
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"])());
+    },
+    newEvent: function newEvent() {
+      return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_4__["newEvent"])());
     }
   };
 };
@@ -1272,10 +1289,13 @@ document.addEventListener('DOMContentLoaded', function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _events_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./events_reducer */ "./frontend/reducers/events_reducer.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  events: _events_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
 
 /***/ }),
@@ -1297,6 +1317,42 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/events_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/events_reducer.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var eventsReducer = function eventsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_EVENT"]:
+      return Object.assign({}, state, _defineProperty({}, action.event.id, action.event));
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_EVENT"]:
+      return Object.assign({}, state, _defineProperty({}, action.events, action.events));
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (eventsReducer);
 
 /***/ }),
 

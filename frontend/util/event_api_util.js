@@ -13,3 +13,9 @@ export const newEvent = event => (
     })
   );
   
+  export const allEvents = () => (
+    $.ajax({
+      method: 'GET',
+      url: '/api/events'
+    })
+  )
