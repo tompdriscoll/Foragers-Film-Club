@@ -2,7 +2,7 @@ import React from 'react';
 
 import SearchResult from './search_result'
 import MovieDetails from './movie_details'
-
+import 
 class Home extends React.Component {
 
     constructor(props){
