@@ -1,7 +1,7 @@
 export const newEvent = event => (
     $.ajax({
       method: 'POST',
-      url: '/api/event/new',
+      url: '/api/event',
       data: { event }
     })
   );

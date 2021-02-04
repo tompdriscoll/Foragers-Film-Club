@@ -1,5 +1,5 @@
 import { Calendar, momentLocalizer } from "react-big-calendar";
-import React from 'react'
+import React from 'react';
 import moment from "moment";
 
 
@@ -16,7 +16,7 @@ class MyCalendar extends React.Component {
     }
   }
 
-  render(){debugger
+  render(){
     return(
       <div className="calendar-top">
         <Calendar

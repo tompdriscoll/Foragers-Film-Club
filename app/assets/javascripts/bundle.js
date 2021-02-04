@@ -309,7 +309,6 @@ var MyCalendar = /*#__PURE__*/function (_React$Component) {
   _createClass(MyCalendar, [{
     key: "render",
     value: function render() {
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "calendar-top"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_big_calendar__WEBPACK_IMPORTED_MODULE_0__["Calendar"], {
@@ -345,6 +344,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _calendar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./calendar */ "./frontend/components/calendar/calendar.jsx");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_event_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/event_actions */ "./frontend/actions/event_actions.js");
+
 
 
 
@@ -354,9 +355,10 @@ var msp = function msp(_ref) {
   var session = _ref.session,
       _ref$entities = _ref.entities,
       users = _ref$entities.users,
-      uploads = _ref$entities.uploads;
+      events = _ref$entities.events;
   return {
-    currentUser: users[session.id]
+    currentUser: users[session.id],
+    events: events
   };
 };
 
@@ -455,7 +457,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         action: "",
         id: "event-form",
-        onSubmit: function onSubmit() {
+        onSubmit: function onSubmit(e) {
           return _this3.handleSubmit(e);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -662,7 +664,8 @@ var Home = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "search-results"
       }, results, details), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "New Event"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_events_new_event_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        user: this.props.currentUser
+        user: this.props.currentUser,
+        processForm: this.props.processForm
       }));
     }
   }]);
@@ -710,8 +713,8 @@ var mdp = function mdp(dispatch) {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"])());
     },
-    processForm: function processForm() {
-      return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_4__["newEvent"])());
+    processForm: function processForm(event) {
+      return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_4__["newEvent"])(event));
     }
   };
 };
@@ -1682,7 +1685,7 @@ __webpack_require__.r(__webpack_exports__);
 var newEvent = function newEvent(event) {
   return $.ajax({
     method: 'POST',
-    url: '/api/event/new',
+    url: '/api/event',
     data: {
       event: event
     }

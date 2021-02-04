@@ -33,7 +33,7 @@ class EventForm extends React.Component {
   render() {
 
     return (
-        <form action="" id="event-form" onSubmit={() => this.handleSubmit(e)}>
+        <form action="" id="event-form" onSubmit={e => this.handleSubmit(e)}>
             <input type="text" id='event-name-field' className="event-form-element"/>
             <input type="text" id='event-type-field' className="event-form-element"/>
             <input type="date" id='event-time-field' className="event-form-element"/>

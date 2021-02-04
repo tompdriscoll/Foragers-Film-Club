@@ -119,7 +119,7 @@ class Home extends React.Component {
                 {details}
             </div>
             <button>New Event</button> 
-            <EventForm user={this.props.currentUser}/>
+            <EventForm user={this.props.currentUser} processForm={this.props.processForm}/>
         </div>)
 
     }

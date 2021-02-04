@@ -14,7 +14,7 @@ const msp = ({ session, entities: { users, events } }) => {
 
 const mdp = dispatch => ({
     logout: () => dispatch(logout()),
-    processForm: () => dispatch(newEvent())
+    processForm: (event) => dispatch(newEvent(event))
 })
 
 export default connect(msp,mdp)(Home)
