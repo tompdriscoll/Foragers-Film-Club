@@ -442,7 +442,9 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "convertStrToDatetime",
     value: function convertStrToDatetime(e) {
-      console.log(e.target.value);
+      var timeArr = e.target.value.split('-');
+      var eventDate = new Date(timeArr[0], timeArr[1], timeArr[2]);
+      return this.setState(_defineProperty({}, 'time', eventDate));
     }
   }, {
     key: "handleSubmit",

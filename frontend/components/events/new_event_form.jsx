@@ -20,7 +20,11 @@ class EventForm extends React.Component {
   }
 
   convertStrToDatetime(e){
-    console.log(e.target.value)
+
+    let timeArr = e.target.value.split('-')
+    let eventDate = new Date(timeArr[0], timeArr[1], timeArr[2])
+    return this.setState({ ['time']:  eventDate});
+    
   }
 
 
