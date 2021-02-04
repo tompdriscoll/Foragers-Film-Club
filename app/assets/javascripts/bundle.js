@@ -301,7 +301,7 @@ var MyCalendar = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      events: []
+      events: Array.from(props.events)
     };
     return _this;
   }
@@ -309,6 +309,7 @@ var MyCalendar = /*#__PURE__*/function (_React$Component) {
   _createClass(MyCalendar, [{
     key: "render",
     value: function render() {
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "calendar-top"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_big_calendar__WEBPACK_IMPORTED_MODULE_0__["Calendar"], {
@@ -422,7 +423,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       name: '',
-      type: '',
+      event_type: '',
       hostId: props.user.id,
       time: ''
     };
@@ -443,6 +444,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
     key: "convertStrToDatetime",
     value: function convertStrToDatetime(e) {
       var timeArr = e.target.value.split('-');
+      timeArr[1] = timeArr[1] - 1;
       var eventDate = new Date(timeArr[0], timeArr[1], timeArr[2]);
       return this.setState(_defineProperty({}, 'time', eventDate));
     }
@@ -480,7 +482,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
         className: "event-form-element",
         value: this.state.last_name,
         placeholder: "Type",
-        onChange: this.update('type')
+        onChange: this.update('event_type')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
         id: "event-time-field",
@@ -1113,7 +1115,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       var form = this;
       var user = Object.assign({}, this.state);
       this.props.processForm(this.state).then(function (response) {
-        form.props.history.push('/h');
+        form.props.history.push('/calendar');
       });
     }
   }, {

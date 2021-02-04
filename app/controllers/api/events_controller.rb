@@ -28,8 +28,8 @@ class Api::EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
+        # format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.json { render :show }
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -69,6 +69,6 @@ class Api::EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :type, :hostId, :time)
+      params.require(:event).permit(:name, :event_type, :hostId, :time)
     end
 end

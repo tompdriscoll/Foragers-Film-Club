@@ -12,11 +12,12 @@ class MyCalendar extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      events: []
+      events: Array.from(props.events)
     }
   }
 
   render(){
+    debugger
     return(
       <div className="calendar-top">
         <Calendar

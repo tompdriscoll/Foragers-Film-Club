@@ -6,7 +6,7 @@ class EventForm extends React.Component {
     super(props);
     this.state = {
       name: '',
-      type: '',
+      event_type: '',
       hostId: props.user.id,
       time: ''
     };
@@ -22,6 +22,7 @@ class EventForm extends React.Component {
   convertStrToDatetime(e){
 
     let timeArr = e.target.value.split('-')
+    timeArr[1] = timeArr[1] - 1
     let eventDate = new Date(timeArr[0], timeArr[1], timeArr[2])
     return this.setState({ ['time']:  eventDate});
     
@@ -43,7 +44,7 @@ class EventForm extends React.Component {
     return (
         <form action="" id="event-form" onSubmit={e => this.handleSubmit(e)}>
             <input type="text" id='event-name-field' className="event-form-element" value={this.state.first_name} placeholder='Name' onChange={this.update('name')} />     
-            <input type="text" id='event-type-field' className="event-form-element" value={this.state.last_name} placeholder='Type' onChange={this.update('type')} />
+            <input type="text" id='event-type-field' className="event-form-element" value={this.state.last_name} placeholder='Type' onChange={this.update('event_type')} />
             <input type="date" id='event-time-field' className="event-form-element"  onChange={e => this.convertStrToDatetime(e)}/>
             <button type='submit'>Submit</button>
         </form>
