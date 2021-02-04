@@ -440,6 +440,11 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "convertStrToDatetime",
+    value: function convertStrToDatetime(e) {
+      console.log(e.target.value);
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
@@ -463,15 +468,24 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         id: "event-name-field",
-        className: "event-form-element"
+        className: "event-form-element",
+        value: this.state.first_name,
+        placeholder: "Name",
+        onChange: this.update('name')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         id: "event-type-field",
-        className: "event-form-element"
+        className: "event-form-element",
+        value: this.state.last_name,
+        placeholder: "Type",
+        onChange: this.update('type')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
         id: "event-time-field",
-        className: "event-form-element"
+        className: "event-form-element",
+        onChange: function onChange(e) {
+          return _this3.convertStrToDatetime(e);
+        }
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
       }, "Submit"));

@@ -19,6 +19,10 @@ class EventForm extends React.Component {
     }
   }
 
+  convertStrToDatetime(e){
+    console.log(e.target.value)
+  }
+
 
   handleSubmit(e) { 
     e.preventDefault();
@@ -34,9 +38,9 @@ class EventForm extends React.Component {
 
     return (
         <form action="" id="event-form" onSubmit={e => this.handleSubmit(e)}>
-            <input type="text" id='event-name-field' className="event-form-element"/>
-            <input type="text" id='event-type-field' className="event-form-element"/>
-            <input type="date" id='event-time-field' className="event-form-element"/>
+            <input type="text" id='event-name-field' className="event-form-element" value={this.state.first_name} placeholder='Name' onChange={this.update('name')} />     
+            <input type="text" id='event-type-field' className="event-form-element" value={this.state.last_name} placeholder='Type' onChange={this.update('type')} />
+            <input type="date" id='event-time-field' className="event-form-element"  onChange={e => this.convertStrToDatetime(e)}/>
             <button type='submit'>Submit</button>
         </form>
     )
