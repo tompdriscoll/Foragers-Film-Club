@@ -11,9 +11,10 @@ class EventForm extends React.Component {
       time: '',
       start: '',
       end: '',
-      allDay: ''
+      allDay: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleAllDay = this.toggleAllDay.bind(this)
   }
 
   update(field) {
@@ -34,6 +35,12 @@ class EventForm extends React.Component {
     
   }
 
+  toggleAllDay() {
+
+    this.state.allDay === 'true' ? this.setState({['allDay']: 'false'}) : this.setState({['allDay']: 'true'})
+    console.log(this.state.allDay)
+  }
+
 
   handleSubmit(e) { 
     e.preventDefault();
@@ -52,9 +59,8 @@ class EventForm extends React.Component {
             <input type="text" id='event-name-field' className="event-form-element" value={this.state.first_name} placeholder='Name' onChange={this.update('name')} />     
             <input type="text" id='event-type-field' className="event-form-element" value={this.state.last_name} placeholder='Type' onChange={this.update('event_type')} />
             <input type="datetime-local" id='event-time-field' className="event-form-element"  onChange={e => this.convertStrToDatetime(e)}/>
-            <input type="time"></input>
-            <input type="time"></input>
-            All Day?<input type="radio"></input>
+            End Time<input type="time"></input>
+            All Day?<input type="checkbox" onChange={ () => this.toggleAllDay()}></input>
             <button type='submit'>Submit</button>
         </form>
     )

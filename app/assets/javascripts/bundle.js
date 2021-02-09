@@ -427,9 +427,10 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       time: '',
       start: '',
       end: '',
-      allDay: ''
+      allDay: false
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.toggleAllDay = _this.toggleAllDay.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -451,6 +452,12 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       dateArr[1] = dateArr[1] - 1;
       var eventDate = new Date(dateArr[0], dateArr[1], dateArr[2], timeArr[0], timeArr[1]);
       return this.setState(_defineProperty({}, 'time', eventDate), ['start'], eventDate);
+    }
+  }, {
+    key: "toggleAllDay",
+    value: function toggleAllDay() {
+      this.state.allDay === 'true' ? this.setState(_defineProperty({}, 'allDay', 'false')) : this.setState(_defineProperty({}, 'allDay', 'true'));
+      console.log(this.state.allDay);
     }
   }, {
     key: "handleSubmit",
@@ -494,12 +501,13 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
         onChange: function onChange(e) {
           return _this3.convertStrToDatetime(e);
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "time"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), "End Time", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "time"
       }), "All Day?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "radio"
+        type: "checkbox",
+        onChange: function onChange() {
+          return _this3.toggleAllDay();
+        }
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
       }, "Submit"));
