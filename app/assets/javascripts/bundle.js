@@ -424,7 +424,10 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       name: '',
       event_type: '',
       hostId: props.user.id,
-      time: ''
+      time: '',
+      start: '',
+      end: '',
+      allDay: ''
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -442,10 +445,12 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "convertStrToDatetime",
     value: function convertStrToDatetime(e) {
-      var timeArr = e.target.value.split('-');
-      timeArr[1] = timeArr[1] - 1;
-      var eventDate = new Date(timeArr[0], timeArr[1], timeArr[2]);
-      return this.setState(_defineProperty({}, 'time', eventDate));
+      var dateTime = e.target.value.split('T');
+      var dateArr = dateTime[0].split('-');
+      var timeArr = dateTime[1].split(':');
+      dateArr[1] = dateArr[1] - 1;
+      var eventDate = new Date(dateArr[0], dateArr[1], dateArr[2], timeArr[0], timeArr[1]);
+      return this.setState(_defineProperty({}, 'time', eventDate), ['start'], eventDate);
     }
   }, {
     key: "handleSubmit",
@@ -483,12 +488,18 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
         placeholder: "Type",
         onChange: this.update('event_type')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "date",
+        type: "datetime-local",
         id: "event-time-field",
         className: "event-form-element",
         onChange: function onChange(e) {
           return _this3.convertStrToDatetime(e);
         }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "time"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "time"
+      }), "All Day?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
       }, "Submit"));

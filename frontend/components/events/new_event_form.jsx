@@ -8,7 +8,10 @@ class EventForm extends React.Component {
       name: '',
       event_type: '',
       hostId: props.user.id,
-      time: ''
+      time: '',
+      start: '',
+      end: '',
+      allDay: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -20,11 +23,14 @@ class EventForm extends React.Component {
   }
 
   convertStrToDatetime(e){
+    let dateTime = e.target.value.split('T')
 
-    let timeArr = e.target.value.split('-')
-    timeArr[1] = timeArr[1] - 1
-    let eventDate = new Date(timeArr[0], timeArr[1], timeArr[2])
-    return this.setState({ ['time']:  eventDate});
+    let dateArr = dateTime[0].split('-')
+    let timeArr = dateTime[1].split(':')
+    
+    dateArr[1] = dateArr[1] - 1
+    let eventDate = new Date(dateArr[0], dateArr[1], dateArr[2], timeArr[0], timeArr[1])
+    return this.setState({ ['time']:  eventDate}, ['start'], eventDate);
     
   }
 
@@ -45,7 +51,10 @@ class EventForm extends React.Component {
         <form action="" id="event-form" onSubmit={e => this.handleSubmit(e)}>
             <input type="text" id='event-name-field' className="event-form-element" value={this.state.first_name} placeholder='Name' onChange={this.update('name')} />     
             <input type="text" id='event-type-field' className="event-form-element" value={this.state.last_name} placeholder='Type' onChange={this.update('event_type')} />
-            <input type="date" id='event-time-field' className="event-form-element"  onChange={e => this.convertStrToDatetime(e)}/>
+            <input type="datetime-local" id='event-time-field' className="event-form-element"  onChange={e => this.convertStrToDatetime(e)}/>
+            <input type="time"></input>
+            <input type="time"></input>
+            All Day?<input type="radio"></input>
             <button type='submit'>Submit</button>
         </form>
     )
