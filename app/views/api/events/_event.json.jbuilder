@@ -1,2 +1,2 @@
-json.extract! event, :id, :name, :event_type, :hostId, :time, :created_at, :updated_at
+json.extract! event, :id, :title, :event_type, :hostId, :time, :start, :end, :allDay?,:created_at, :updated_at
 
