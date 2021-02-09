@@ -421,7 +421,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      name: '',
+      title: '',
       event_type: '',
       hostId: props.user.id,
       time: '',
@@ -446,12 +446,22 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "convertStrToDatetime",
     value: function convertStrToDatetime(e) {
+      var _this$setState;
+
       var dateTime = e.target.value.split('T');
       var dateArr = dateTime[0].split('-');
       var timeArr = dateTime[1].split(':');
       dateArr[1] = dateArr[1] - 1;
       var eventDate = new Date(dateArr[0], dateArr[1], dateArr[2], timeArr[0], timeArr[1]);
-      return this.setState(_defineProperty({}, 'time', eventDate), ['start'], eventDate);
+      this.setState((_this$setState = {}, _defineProperty(_this$setState, 'time', eventDate), _defineProperty(_this$setState, 'start', eventDate), _this$setState));
+    }
+  }, {
+    key: "endTimeConversion",
+    value: function endTimeConversion(e) {
+      var dateArr = e.target.value.split('-');
+      dateArr[1] = dateArr[1] - 1;
+      var eventDate = new Date(dateArr[0], dateArr[1], dateArr[2]);
+      return this.setState(_defineProperty({}, 'end', eventDate));
     }
   }, {
     key: "toggleAllDay",
@@ -485,8 +495,8 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
         id: "event-name-field",
         className: "event-form-element",
         value: this.state.first_name,
-        placeholder: "Name",
-        onChange: this.update('name')
+        placeholder: "Title",
+        onChange: this.update('title')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         id: "event-type-field",
@@ -502,7 +512,10 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
           return _this3.convertStrToDatetime(e);
         }
       }), "End Time", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "time"
+        type: "time",
+        onChange: function onChange(e) {
+          return endTimeConversion();
+        }
       }), "All Day?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         onChange: function onChange() {

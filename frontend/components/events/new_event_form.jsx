@@ -5,7 +5,7 @@ class EventForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      title: '',
       event_type: '',
       hostId: props.user.id,
       time: '',
@@ -31,8 +31,21 @@ class EventForm extends React.Component {
     
     dateArr[1] = dateArr[1] - 1
     let eventDate = new Date(dateArr[0], dateArr[1], dateArr[2], timeArr[0], timeArr[1])
-    return this.setState({ ['time']:  eventDate}, ['start'], eventDate);
+    this.setState({ ['time']:  eventDate, ['start']: eventDate});
     
+    
+  }
+
+  endTimeConversion(e){
+ 
+
+    let dateArr = e.target.value.split('-')
+    
+    dateArr[1] = dateArr[1] - 1
+    let eventDate = new Date(dateArr[0], dateArr[1], dateArr[2])
+    return this.setState({ ['end']:  eventDate});
+    
+
   }
 
   toggleAllDay() {
@@ -56,10 +69,10 @@ class EventForm extends React.Component {
 
     return (
         <form action="" id="event-form" onSubmit={e => this.handleSubmit(e)}>
-            <input type="text" id='event-name-field' className="event-form-element" value={this.state.first_name} placeholder='Name' onChange={this.update('name')} />     
+            <input type="text" id='event-name-field' className="event-form-element" value={this.state.first_name} placeholder='Title' onChange={this.update('title')} />     
             <input type="text" id='event-type-field' className="event-form-element" value={this.state.last_name} placeholder='Type' onChange={this.update('event_type')} />
             <input type="datetime-local" id='event-time-field' className="event-form-element"  onChange={e => this.convertStrToDatetime(e)}/>
-            End Time<input type="time"></input>
+            End Time<input type="time" onChange={(e) => endTimeConversion()}></input>
             All Day?<input type="checkbox" onChange={ () => this.toggleAllDay()}></input>
             <button type='submit'>Submit</button>
         </form>
