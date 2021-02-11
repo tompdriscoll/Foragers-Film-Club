@@ -6,7 +6,7 @@ import {logout} from '../../actions/session_actions'
 import receiveAllEvents from '../../actions/event_actions'
 
 const msp = ({ session, entities: { users, events } }) => {
-  
+    debugger
     return {
       currentUser: users[session.id],
       events: events

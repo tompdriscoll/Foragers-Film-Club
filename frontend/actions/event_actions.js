@@ -9,7 +9,7 @@ export const receiveEvent = event => {
   event})
 };
 
-export const receiveAllEvents = () => {
+export const allEvents = events => {
     return ({
         type: RECEIVE_ALL_EVENTS,
         events

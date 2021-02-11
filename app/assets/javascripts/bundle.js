@@ -90,7 +90,7 @@
 /*!*******************************************!*\
   !*** ./frontend/actions/event_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_EVENT, RECEIVE_ALL_EVENTS, receiveEvent, receiveAllEvents, newEvent */
+/*! exports provided: RECEIVE_EVENT, RECEIVE_ALL_EVENTS, receiveEvent, allEvents, newEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_EVENT", function() { return RECEIVE_EVENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_EVENTS", function() { return RECEIVE_ALL_EVENTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveEvent", function() { return receiveEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllEvents", function() { return receiveAllEvents; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "allEvents", function() { return allEvents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "newEvent", function() { return newEvent; });
 /* harmony import */ var _util_event_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/event_api_util */ "./frontend/util/event_api_util.js");
 
@@ -110,7 +110,7 @@ var receiveEvent = function receiveEvent(event) {
     event: event
   };
 };
-var receiveAllEvents = function receiveAllEvents() {
+var allEvents = function allEvents(events) {
   return {
     type: RECEIVE_ALL_EVENTS,
     events: events
@@ -356,6 +356,7 @@ var msp = function msp(_ref) {
       _ref$entities = _ref.entities,
       users = _ref$entities.users,
       events = _ref$entities.events;
+  debugger;
   return {
     currentUser: users[session.id],
     events: events
@@ -446,18 +447,12 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "convertStrToDatetime",
     value: function convertStrToDatetime(e) {
-      var _this$setState;
-
-      var dateTime = e.target.value.split('T');
-      var dateArr = dateTime[0].split('-');
-      var timeArr = dateTime[1].split(':');
-      dateArr[1] = dateArr[1] - 1;
-      var eventDate = new Date(dateArr[0], dateArr[1], dateArr[2], timeArr[0], timeArr[1]);
-      this.setState((_this$setState = {}, _defineProperty(_this$setState, 'time', eventDate), _defineProperty(_this$setState, 'start', eventDate), _this$setState));
+      var dateTime = e.target.value.split(':');
     }
   }, {
     key: "endTimeConversion",
     value: function endTimeConversion(e) {
+      debugger;
       var dateArr = e.target.value.split('-');
       dateArr[1] = dateArr[1] - 1;
       var eventDate = new Date(dateArr[0], dateArr[1], dateArr[2]);
@@ -514,7 +509,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       }), "End Time", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "time",
         onChange: function onChange(e) {
-          return endTimeConversion();
+          return _this3.endTimeConversion(e);
         }
       }), "All Day?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
@@ -1749,7 +1744,8 @@ var deleteEvent = function deleteEvent() {
 var allEvents = function allEvents() {
   return $.ajax({
     method: 'GET',
-    url: '/api/events'
+    url: '/api/events',
+    data: events
   });
 };
 

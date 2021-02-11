@@ -16,6 +16,7 @@ export const newEvent = event => (
   export const allEvents = () => (
     $.ajax({
       method: 'GET',
-      url: '/api/events'
+      url: '/api/events',
+      data: events
     })
   )
