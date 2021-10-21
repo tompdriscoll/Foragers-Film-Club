@@ -309,6 +309,7 @@ var MyCalendar = /*#__PURE__*/function (_React$Component) {
   _createClass(MyCalendar, [{
     key: "render",
     value: function render() {
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "calendar-top"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_big_calendar__WEBPACK_IMPORTED_MODULE_0__["Calendar"], {
@@ -485,21 +486,21 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
         onSubmit: function onSubmit(e) {
           return _this3.handleSubmit(e);
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Title", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         id: "event-name-field",
         className: "event-form-element",
         value: this.state.first_name,
         placeholder: "Title",
         onChange: this.update('title')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), "Type", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         id: "event-type-field",
         className: "event-form-element",
         value: this.state.last_name,
         placeholder: "Type",
         onChange: this.update('event_type')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), "Start Time", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "datetime-local",
         id: "event-time-field",
         className: "event-form-element",
@@ -507,7 +508,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
           return _this3.convertStrToDatetime(e);
         }
       }), "End Time", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "time",
+        type: "datetime-local",
         onChange: function onChange(e) {
           return _this3.endTimeConversion(e);
         }
@@ -1381,9 +1382,13 @@ var Splash = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      form: 'Sign Up'
+      form: 'Sign Up',
+      location: _this.getLocation(),
+      cityArray: [['Boston', 42.3601, -71.0589], ['Portland', 43.6591, -70.2568]]
     };
     _this.changeForm = _this.changeForm.bind(_assertThisInitialized(_this));
+    _this.getLocation = _this.getLocation.bind(_assertThisInitialized(_this));
+    _this.showPosition = _this.showPosition.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1396,6 +1401,39 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "showPosition",
+    value: function showPosition(position) {
+      var x = document.getElementById("demo");
+      x.innerHTML = position.coords.latitude + '&nbsp' + position.coords.longitude;
+
+      function deg2rad(degrees) {
+        radians = degrees * (Math.PI / 180);
+        return radians;
+      }
+
+      function Haversine(lat1, lon1, lat2, lon2) {
+        deltaLat = lat2 - lat1;
+        deltaLon = lon2 - lon1;
+        earthRadius = 3959; // in miles 6371 in meters.
+
+        alpha = deltaLat / 2;
+        beta = deltaLon / 2;
+        a = Math.sin(deg2rad(alpha)) * Math.sin(deg2rad(alpha)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(deg2rad(beta)) * Math.sin(deg2rad(beta));
+        c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        distance = earthRadius * c;
+        return distance.toFixed(2);
+      }
+    }
+  }, {
+    key: "getLocation",
+    value: function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(this.showPosition);
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var form = this.state.form === 'Sign Up' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signup_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_login_from_container__WEBPACK_IMPORTED_MODULE_2__["default"], null);
@@ -1404,18 +1442,11 @@ var Splash = /*#__PURE__*/function (_React$Component) {
         id: "splash"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "splash-contents"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        id: "splash-quote"
-      }, "Everything I learned, I learned from the movies.\" - Audrey Hepburn "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "splash-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-        id: "form-title"
-      }, this.state.form), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-header-sub"
-      }, "or\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        id: "change-form",
-        onClick: this.changeForm
-      }, " ", formChangeButton))), form)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.getLocation()
+      }, "Try It"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "demo"
+      })));
     }
   }]);
 

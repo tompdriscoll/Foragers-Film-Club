@@ -64,10 +64,10 @@ class EventForm extends React.Component {
 
     return (
         <form action="" id="event-form" onSubmit={e => this.handleSubmit(e)}>
-            <input type="text" id='event-name-field' className="event-form-element" value={this.state.first_name} placeholder='Title' onChange={this.update('title')} />     
-            <input type="text" id='event-type-field' className="event-form-element" value={this.state.last_name} placeholder='Type' onChange={this.update('event_type')} />
-            <input type="datetime-local" id='event-time-field' className="event-form-element"  onChange={e => this.convertStrToDatetime(e)}/>
-            End Time<input type="time" onChange={(e) => this.endTimeConversion(e)}></input>
+            Title<input type="text" id='event-name-field' className="event-form-element" value={this.state.first_name} placeholder='Title' onChange={this.update('title')} />     
+            Type<input type="text" id='event-type-field' className="event-form-element" value={this.state.last_name} placeholder='Type' onChange={this.update('event_type')} />
+            Start Time<input type="datetime-local" id='event-time-field' className="event-form-element"  onChange={e => this.convertStrToDatetime(e)}/>
+            End Time<input type="datetime-local" onChange={(e) => this.endTimeConversion(e)}></input>
             All Day?<input type="checkbox" onChange={ () => this.toggleAllDay()}></input>
             <button type='submit'>Submit</button>
         </form>

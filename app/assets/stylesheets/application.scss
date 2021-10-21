@@ -2,7 +2,7 @@
 $blue: #003071;
 $orange1: #FFBE95;
 $orange2: #FF9B5C;
-
+$green: #2F8839;
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -35,7 +35,7 @@ button:hover{
 }
 
 body{
-    background: $orange1;
+    background: $green;
     overflow-x: hidden;
 }
 
@@ -235,6 +235,13 @@ body{
  
 }
 
+
+#citgo{
+  position: absolute;
+  top: 0;
+  width: -webkit-fill-available;
+  z-index: -1;
+}
 //Details
 
 
@@ -300,7 +307,7 @@ body{
   
 
 
-// Calendar
+// Calendar (stolen) 
 @charset "UTF-8";
   .rbc-btn {
     color: inherit;
