@@ -1384,11 +1384,13 @@ var Splash = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       form: 'Sign Up',
       location: _this.getLocation(),
-      cityArray: [['Boston', 42.3601, -71.0589], ['Portland', 43.6591, -70.2568]]
+      cityArray: [['Boston', 42.3601, -71.0589], ['Portland', 43.6591, -70.2568], ['Miami', 25.7617, -80.1918]]
     };
     _this.changeForm = _this.changeForm.bind(_assertThisInitialized(_this));
     _this.getLocation = _this.getLocation.bind(_assertThisInitialized(_this));
     _this.showPosition = _this.showPosition.bind(_assertThisInitialized(_this));
+    _this.Haversine = _this.Haversine.bind(_assertThisInitialized(_this));
+    _this.deg2rad = _this.deg2rad.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1403,26 +1405,43 @@ var Splash = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showPosition",
     value: function showPosition(position) {
+      var currentCity;
+      var closestCity;
+      var closestCityHaversineNum = 999999999999;
+
+      for (var i = 0; i < 2; i++) {
+        currentCity = this.state.cityArray[i];
+        console.log(currentCity);
+        var distance = this.Haversine(position.coords.latitude, position.coords.longitude, currentCity[1], currentCity[2]);
+
+        if (distance < closestCityHaversineNum) {
+          closestCity = currentCity;
+          closestCityHaversineNum = distance;
+        }
+      }
+
       var x = document.getElementById("demo");
-      x.innerHTML = position.coords.latitude + '&nbsp' + position.coords.longitude;
+      x.innerHTML = closestCity[0];
+    }
+  }, {
+    key: "deg2rad",
+    value: function deg2rad(degrees) {
+      var radians = degrees * (Math.PI / 180);
+      return radians;
+    }
+  }, {
+    key: "Haversine",
+    value: function Haversine(lat1, lon1, lat2, lon2) {
+      var deltaLat = lat2 - lat1;
+      var deltaLon = lon2 - lon1;
+      var earthRadius = 3959; // in miles 6371 in meters.
 
-      function deg2rad(degrees) {
-        radians = degrees * (Math.PI / 180);
-        return radians;
-      }
-
-      function Haversine(lat1, lon1, lat2, lon2) {
-        deltaLat = lat2 - lat1;
-        deltaLon = lon2 - lon1;
-        earthRadius = 3959; // in miles 6371 in meters.
-
-        alpha = deltaLat / 2;
-        beta = deltaLon / 2;
-        a = Math.sin(deg2rad(alpha)) * Math.sin(deg2rad(alpha)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(deg2rad(beta)) * Math.sin(deg2rad(beta));
-        c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        distance = earthRadius * c;
-        return distance.toFixed(2);
-      }
+      var alpha = deltaLat / 2;
+      var beta = deltaLon / 2;
+      var a = Math.sin(this.deg2rad(alpha)) * Math.sin(this.deg2rad(alpha)) + Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * Math.sin(this.deg2rad(beta)) * Math.sin(this.deg2rad(beta));
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      var distance = earthRadius * c;
+      return distance.toFixed(2);
     }
   }, {
     key: "getLocation",
