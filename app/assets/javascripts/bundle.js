@@ -1409,10 +1409,12 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       var closestCity;
       var closestCityHaversineNum = 999999999999;
 
-      for (var i = 0; i < 2; i++) {
+      for (var i = 0; i < this.state.cityArray.length; i++) {
+        // debugger
         currentCity = this.state.cityArray[i];
         console.log(currentCity);
         var distance = this.Haversine(position.coords.latitude, position.coords.longitude, currentCity[1], currentCity[2]);
+        console.log(distance);
 
         if (distance < closestCityHaversineNum) {
           closestCity = currentCity;

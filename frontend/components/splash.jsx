@@ -29,10 +29,12 @@ class Splash extends React.Component {
         let closestCity;
         let closestCityHaversineNum = 999999999999;
 
-            for(let i=0; i<2; i++){
+            for(let i=0; i < this.state.cityArray.length ; i++){
+                // debugger
                 currentCity = this.state.cityArray[i];
                 console.log(currentCity)
                 let distance = this.Haversine(position.coords.latitude,position.coords.longitude, currentCity[1], currentCity[2])
+                console.log(distance)
                 if (distance < closestCityHaversineNum) {
                     closestCity = currentCity;
                     closestCityHaversineNum = distance
